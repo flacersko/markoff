@@ -71,14 +71,11 @@ def get_next_char(model_counts: Dict[str, Counter], ctx: str, order: int, temp: 
     while True:
         if ctx in model_counts:
             cnt = model_counts[ctx]
-            total = sum(cnt.values())
-            if total == 0:
-                ctx = ctx[1:] if ctx else ''
-                continue
             syms = list(cnt.keys())
             weights = [cnt[s] for s in syms]
             if temp != 1.0:
-                weights = [w ** (1.0 / temp) for w in weights]
+                inv_temp = 1.0 / temp
+                weights = [w ** inv_temp for w in weights]
             tot = sum(weights)
             if tot <= 0:
                 ctx = ctx[1:] if ctx else ''
