@@ -33,14 +33,14 @@ Phantom
 Generate a nickname:
 
 ```bash
-python3 main.py --names-file names.txt
+python3 main.py --names-file example_names.txt
 ```
 
 Generate multiple nicknames:
 
 ```bash
 python3 main.py \
-    --names-file names.txt \
+    --names-file example_names.txt \
     --count 10
 ```
 
@@ -50,7 +50,7 @@ Generate names between 6 and 10 characters:
 
 ```bash
 python3 main.py \
-    --names-file names.txt \
+    --names-file example_names.txt \
     --min-length 6 \
     --max-length 10
 ```
@@ -59,7 +59,7 @@ Generate names starting with "s":
 
 ```bash
 python3 main.py \
-    --names-file names.txt \
+    --names-file example_names.txt \
     --start s
 ```
 
@@ -67,7 +67,7 @@ Generate names ending with "x":
 
 ```bash
 python3 main.py \
-    --names-file names.txt \
+    --names-file example_names.txt \
     --end x
 ```
 
@@ -75,7 +75,7 @@ Use beam search:
 
 ```bash
 python3 main.py \
-    --names-file names.txt \
+    --names-file example_names.txt \
     --beam 20
 ```
 
@@ -83,7 +83,7 @@ Generate CamelCase names:
 
 ```bash
 python3 main.py \
-    --names-file names.txt \
+    --names-file example_names.txt \
     --style-camel
 ```
 
