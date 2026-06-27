@@ -120,7 +120,7 @@ def has_ngram_loop(text: str, max_repeat: int, max_size: int) -> bool:
                 break
             repeats += 1
             if repeats > max_repeat:
-                return true
+                return True
     
     return False
 
