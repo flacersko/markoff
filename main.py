@@ -112,18 +112,16 @@ def has_ngram_loop(text: str, max_repeat: int, max_size: int) -> bool:
     for size in range(2, max_size + 1):
         if n < size * (max_repeat + 1):
             continue
-        pattern = text[-size:]
-        count = 1
-        pos = n - size
-        # this sucks ass
-        while pos >= size:
-            prev = text[pos - size:pos]
-            if prev != pattern:
+        chunk = text[-size:]
+        repeats = 1
+
+        for i in range(n - size * 2, -1, -size):
+            if text[i:i + size] != chunk:
                 break
-            count += 1
-            if count > max_repeat:
-                return True
-            pos -= size
+            repeats += 1
+            if repeats > max_repeat:
+                return true
+    
     return False
 
 def beam_search(model_counts: Dict[str, Counter], order: int, start_letter: Optional[str], end_letter: Optional[str], min_len: int, max_len: int, beam_width: int, temp: float, max_repeat: int, max_ngram_repeat: int, max_ngram_size: int) -> List[str]:
