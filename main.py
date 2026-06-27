@@ -52,9 +52,9 @@ def build_model_counts(names: List[str], order: int, smooth: float) -> Dict[str,
     start = '^' * order
     for name in names:
         seq = start + name.lower() + '$'
-        for i in range(len(name) + 1):
-            ctx = seq[i:i + order]
-            nxt = seq[i + order]
+        for i in range(order, len(seq)):
+            ctx = seq[i - order:i]
+            nxt = seq[i] 
             model_counts[ctx][nxt] += 1
 
     if smooth > 0:
@@ -66,6 +66,8 @@ def build_model_counts(names: List[str], order: int, smooth: float) -> Dict[str,
                 cnt[symb] = cnt.get(symb, 0) + smooth
 
     return model_counts
+    # It is supposed to be less narrated now because we form a more
+    # clear sequence.
 
 def get_next_char(model_counts: Dict[str, Counter], ctx: str, order: int, temp: float) -> Optional[str]:
     while True:
